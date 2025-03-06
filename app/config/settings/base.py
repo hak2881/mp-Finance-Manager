@@ -97,8 +97,8 @@ DATABASES = {
         "NAME": os.environ.get("DB_NAME"),  # 환경 변수 읽기
         "USER": os.environ.get("DB_USER"),
         "PASSWORD": os.environ.get("DB_PASSWORD"),
-        "HOST": os.environ.get("DB_HOST"),
-        "PORT": 5432,
+        "HOST": os.getenv("DB_HOST", "127.0.0.1"),  # ✅ localhost 대신 127.0.0.1 사용
+        "PORT": int(os.getenv("DB_PORT", "5432")),
     }
 }
 
