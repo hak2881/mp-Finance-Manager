@@ -23,9 +23,9 @@ jobs:
           - 5432:5432
         # Github Secrets에서 가져와서 env로 등록, Postgres 데이터베이스 연결 설정
         env:
-          POSTGRES_USER: ${{ secrets.PG_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.PG_PASSWORD }}
-          POSTGRES_DB: ${{ secrets.PG_NAME }}
+          POSTGRES_USER: "hak"
+          POSTGRES_PASSWORD: "1234"
+          POSTGRES_DB: "FM"
         # 옵션으로 postgres의 연결 상태를 확인. 10초 단위로 5번 재시도. 5초간 기다림.
         options: >-
           --health-cmd pg_isready
@@ -68,7 +68,7 @@ jobs:
       # DB 연결을 테스트
       - name: Wait for PostgreSQL
         run: |
-          until pg_isready -h localhost -p ${{ secrets.DB_PORT }} -U ${{ secrets.DB_USER }}; do
+          until pg_isready -h localhost -p 5432 -U "hak" do
             sleep 1
           done
 
