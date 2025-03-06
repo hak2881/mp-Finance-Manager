@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # OWN_APP
+    "rest_framework",
+    "drf_yasg",
+    # Third_party
 ]
 
 MIDDLEWARE = [
@@ -73,13 +77,28 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv(os.path.join(BASE_DIR,".env"))
+
+DATABASES ={
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("DB_NAME") ,  # 데이터베이스 이름
+        'USER': os.getenv("DB_USER"),       # 데이터베이스 사용자
+        'PASSWORD': os.getenv("DB_PASSWORD"), # 비밀번호
+        'HOST': os.getenv("DB_HOST", "localhost"), # 로컬 개발 환경에서는 localhost, 원격 서버일 경우 서버 IP
+        'PORT': int(os.getenv("DB_PORT", 5432)), # 기본 포트 (PostgreSQL 기본값: 5432)
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -121,3 +140,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
