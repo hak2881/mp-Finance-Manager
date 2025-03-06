@@ -68,7 +68,7 @@ jobs:
       # DB 연결을 테스트
       - name: Wait for PostgreSQL
         run: |
-          until pg_isready -h localhost -p 5432 -U "hak" do
+          until pg_isready -h localhost -p 5432 -U "hak"; do
             sleep 1
           done
 
