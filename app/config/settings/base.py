@@ -88,9 +88,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv(BASE_DIR / "/.env")
-print(f"BASE_DIR: {BASE_DIR}")
-print(f"Looking for .env at: {BASE_DIR / '.env'}")
+load_dotenv(BASE_DIR)
 
 DATABASES = {
     "default": {
