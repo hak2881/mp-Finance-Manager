@@ -88,7 +88,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv(os.path.join(BASE_DIR, ".env"))
+load_dotenv(os.path.join(BASE_DIR, "../../../.env"))
 
 DATABASES = {
     "default": {
