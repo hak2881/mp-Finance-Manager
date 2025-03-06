@@ -95,10 +95,10 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.environ.get("DB_NAME"),  # 환경 변수 읽기
-        "USER": os.environ.get("DB_USER", "hak"),
-        "PASSWORD": os.environ.get("DB_PASSWORD", "1234"),
-        "HOST": os.environ.get("DB_HOST", "localhost"),
-        "PORT": int(os.environ.get("DB_PORT", 5432)),
+        "USER": os.environ.get("DB_USER"),
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
+        "HOST": os.environ.get("DB_HOST"),
+        "PORT": int(os.environ.get("DB_PORT")),
     }
 }
 
