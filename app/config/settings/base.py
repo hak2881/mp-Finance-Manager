@@ -94,8 +94,8 @@ load_dotenv(BASE_DIR)
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("DB_NAME"),  # 환경 변수 읽기
-        "USER": os.environ.get("DB_USER"),
+        "NAME": os.environ.get("DB_NAME", "fm"),  # 환경 변수 읽기
+        "USER": os.environ.get("DB_USER", "hak"),
         "PASSWORD": os.environ.get("DB_PASSWORD", "1234"),
         "HOST": os.getenv("DB_HOST", "127.0.0.1"),  # ✅ localhost 대신 127.0.0.1 사용
         "PORT": int(os.getenv("DB_PORT", "5432")),
