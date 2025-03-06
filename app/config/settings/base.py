@@ -87,19 +87,17 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
-
 load_dotenv(BASE_DIR)
+
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),  # 데이터베이스 이름
-        "USER": os.getenv("DB_USER"),  # 데이터베이스 사용자
-        "PASSWORD": os.getenv("DB_PASSWORD"),  # 비밀번호
-        "HOST": os.getenv(
-            "DB_HOST", "localhost"
-        ),  # 로컬 개발 환경에서는 localhost, 원격 서버일 경우 서버 IP
-        "PORT": int(os.getenv("DB_PORT", 5432)),  # 기본 포트 (PostgreSQL 기본값: 5432)
+        "NAME": os.environ.get("DB_NAME"),  # 환경 변수 읽기
+        "USER": os.environ.get("DB_USER", "hak"),
+        "PASSWORD": os.environ.get("DB_PASSWORD", "1234"),
+        "HOST": os.environ.get("DB_HOST", "localhost"),
+        "PORT": int(os.environ.get("DB_PORT", 5432)),
     }
 }
 
