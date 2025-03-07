@@ -16,10 +16,8 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 import os
+
 from dotenv import load_dotenv
-
-
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -90,7 +88,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 # }
 
 if not os.getenv("GITHUB_ACTIONS"):
-    load_dotenv(BASE_DIR/"../.env")
+    load_dotenv(BASE_DIR / "../.env")
 
 DATABASES = {
     "default": {
@@ -99,7 +97,7 @@ DATABASES = {
         "USER": os.getenv("DB_USER"),
         "PASSWORD": os.getenv("DB_PASSWORD"),
         "HOST": os.getenv("DB_HOST"),  # ✅ localhost 대신 127.0.0.1 사용
-        "PORT": int(os.getenv("DB_PORT","5432")),
+        "PORT": int(os.getenv("DB_PORT", "5432")),
     }
 }
 
