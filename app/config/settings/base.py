@@ -15,6 +15,11 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+import os
+from dotenv import load_dotenv
+
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -83,22 +88,18 @@ WSGI_APPLICATION = "config.wsgi.application"
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-import os
-from pathlib import Path
 
-from dotenv import load_dotenv
-
-load_dotenv(BASE_DIR)
-
+if not os.getenv("GITHUB_ACTIONS"):
+    load_dotenv(BASE_DIR/"../.env")
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("DB_NAME", "fm"),  # 환경 변수 읽기
-        "USER": os.environ.get("DB_USER", "hak"),
-        "PASSWORD": os.environ.get("DB_PASSWORD", "1234"),
-        "HOST": os.getenv("DB_HOST", "127.0.0.1"),  # ✅ localhost 대신 127.0.0.1 사용
-        "PORT": int(os.getenv("DB_PORT", "5432")),
+        "NAME": os.getenv("DB_NAME"),  # 환경 변수 읽기
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),  # ✅ localhost 대신 127.0.0.1 사용
+        "PORT": int(os.getenv("DB_PORT","5432")),
     }
 }
 
